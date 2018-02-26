@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Binary Tree</title>
+</head>
+
+
+<script>
+	function sortedBinaryTree() {
+		var Node = function (key) {
+			this.key = key;
+			this.left = null;
+			this.right = null;
+		}
+
+		function insertNodes(node, newNode) {
+			if (newNode.key < node.key) {
+				if (node.left === null) {
+					node.left = newNode;
+				} else {
+					insertNodes(node.left, newNode);
+				}
+			} else {
+				if (node.right === null) {
+					node.right = newNode;
+				} else {
+					insertNodes(node.right, newNode);
+				}
+			}
+		}
+
+		var root = null;
+		this.insert = function (key) {
+			var newNode = new Node(key);
+			if (root === null) {
+				root = newNode;
+			} else {
+				insertNodes(root, newNode);
+			}
+		}
+	}
+
+	function deepthOfTree(Node) {
+		var deep = 0;
+		var deep1 = 0;
+		var depth = checkDepth();
+
+		function checkDepth() {
+			if (Node.left !== null) {
+				checkChilds(Node.left);
+				deep++;
+			} else if (Node.right !== null) {
+				checkChilds(Node.right);
+				deep1++;
+			} else {
+				return deep > deep1 ? deep : deep1;
+				/*if (deep <= deep1)
+				 deep = deep1;*/
+			}
+		}
+	}
+
+	var sortedBinaryTree = new sortedBinaryTree();
+	var nodes = [4, 5, 6, 7, 1, 8, 9, 2, 10, 3];
+	nodes.forEach(function (key) {
+		sortedBinaryTree.insert(key);
+	});
+	console.log(sortedBinaryTree);
+	var deepthOfTree = new deepthOfTree(sortedBinaryTree.root);
+	console.log(deepthOfTree.depth);
+</script>
+
+</html>
