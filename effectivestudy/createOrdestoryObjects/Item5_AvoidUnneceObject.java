@@ -1,7 +1,7 @@
-
+package createOrdestoryObjects;
 /**
  * 项目名：  syy-prj
- * 文件名：  Item5_AvoidUnneceObject.java
+ * 文件名：  createOrdestoryObjects.Item5_AvoidUnneceObject.java
  * 模块说明：
  * 修改历史：
  * 2018-02-24 - Songyanyan - 创建。

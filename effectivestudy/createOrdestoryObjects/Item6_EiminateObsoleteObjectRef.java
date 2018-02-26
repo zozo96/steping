@@ -1,7 +1,7 @@
-
+package createOrdestoryObjects;
 /**
  * 项目名：  syy-prj
- * 文件名：  Item6_EiminateObsoleteObjectRef.java
+ * 文件名：  createOrdestoryObjects.Item6_EiminateObsoleteObjectRef.java
  * 模块说明：
  * 修改历史：
  * 2018-02-26 - Songyanyan - 创建。

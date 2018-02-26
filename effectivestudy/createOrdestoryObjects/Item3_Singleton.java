@@ -1,10 +1,10 @@
-/**
- * 项目名：  syy-prj
- * 文件名：  Item3_Singleton.java
- * 模块说明：
- * 修改历史：
- * 2018-02-23 - Songyanyan - 创建。
- */
+package createOrdestoryObjects; /**
+                                * 项目名：  syy-prj
+                                * 文件名：  createOrdestoryObjects.Item3_Singleton.java
+                                * 模块说明：
+                                * 修改历史：
+                                * 2018-02-23 - Songyanyan - 创建。
+                                */
 
 /**
  * Singleton的实现方式
