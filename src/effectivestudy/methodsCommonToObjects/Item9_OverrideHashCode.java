@@ -27,7 +27,7 @@ public class Item9_OverrideHashCode {
   }
 }
 
-final class PhoneNumber {
+final class PhoneNumber implements Comparable<PhoneNumber> {
   private final short areaCode;
   private final short prefix;
   private final short lineNumber;
@@ -80,4 +80,33 @@ final class PhoneNumber {
   public String toString() {
     return String.format("(%03d) %03d-%04d", areaCode, prefix, lineNumber);
   }
+  
+  // Item12_Override CompareTo
+  @Override
+  public int compareTo(PhoneNumber o) {
+    if (areaCode > o.areaCode)
+      return 1;
+    if (areaCode < o.areaCode)
+      return -1;
+    
+    if (prefix > o.prefix)
+      return 1;
+    if (prefix < o.prefix)
+      return -1;
+    
+    if (lineNumber > o.lineNumber)
+      return 1;
+    if (lineNumber < o.lineNumber)
+      return -1;
+    
+    return 0;// All are equal
+  }
+  /*
+   * @Override public int compareTo(PhoneNumber o) { // 用这种方式需要注意，最大值和最小值差不能超过Integer.MAX_VALUE(2^31
+   * -1) int areaCodeDiff = areaCode - o.areaCode; if (areaCodeDiff != 0) return areaCodeDiff; int
+   * prefixDiff = prefix - o.prefix; if (prefixDiff != 0) return prefixDiff; int lineNumberDiff =
+   * lineNumber - o.lineNumber; if (lineNumberDiff != 0) return lineNumberDiff;
+   * 
+   * return 0;//All are equal }
+   */
 }
