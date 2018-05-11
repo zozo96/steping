@@ -23,9 +23,9 @@ public class Sorts {
     // int[] result = DirectInsertSort.sortResult(a);
     // int[] result = ShellSort.sort(a);
     // int[] result = SimpleSelectionSort.sort(a);
-    // int[] result = QuickSort.sort(a, 0, 10);
+    int[] result = QuickSort.sort(a, 0, 10);
     // int[] result = HeapSort.sort(a);
-    int[] result = MergeSort.sort(a);
+    // int[] result = MergeSort.sort(a);
     for (int i = 0; i < result.length; i++) {
       System.out.println(result[i]);
     }

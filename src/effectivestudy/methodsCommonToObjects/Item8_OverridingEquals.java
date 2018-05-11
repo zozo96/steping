@@ -45,6 +45,31 @@ public class Item8_OverridingEquals {
     System.out.println("A.equals(B) == " + A.equals(B));
     System.out.println("B.equals(C) == " + B.equals(C));
     System.out.println("C.equals(A) == " + C.equals(A));
+    
+    class A {
+      private String name;
+      private int index;
+      
+      A(int index, String name) {
+        this.index = index;
+        this.name = name;
+      }
+    }
+    // List中的remove
+    List<A> list1 = new ArrayList();
+    A a1 = new A(1, "A1");
+    A a2 = new A(2, "A2");
+    A a3 = new A(3, "A3");
+    
+    list1.add(a1);
+    list1.add(a2);
+    list1.add(a3);
+    list1.remove(a2);
+    for (A a : list1) {
+      System.out.println(a.index);
+    }
+    // [methodsCommonToObjects.Item8_OverridingEquals$1A@3834d63f
+    System.out.println(list1.toString());
   }
 }
 
@@ -129,5 +154,10 @@ class CounterPoint extends Point {
   
   public int numberCreated() {
     return counter.get();
+  }
+  
+  public int[] test() {
+    int[] ints = { 1, 1 };
+    return new int[] { 1, 1 };
   }
 }
