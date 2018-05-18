@@ -7,7 +7,12 @@
  * 2018-03-28 - Songyanyan - 创建。
  */
 
-import java.util.*;
+import java.io.BufferedReader;
+import java.util.StringTokenizer;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 /**
  * 算法题目
@@ -25,7 +30,7 @@ public class AlgorithmTitles {
     // String[] bolts = { "AB", "GG", "DD", "BC" };
     // NBCompare compare = new NBCompare();
     // sortNutsAndBolts.sortNutsAndBolts(nuts, bolts, compare);
-    
+
     // TreeNode node1 = new TreeNode(1);
     // TreeNode node2 = new TreeNode(1);
     // TreeNode node3 = new TreeNode(1);
@@ -41,7 +46,7 @@ public class AlgorithmTitles {
     // node3.right = node7;
     // int min = TreeNode.run(node1);
     // System.out.println(min);
-    
+
     // ListNode node = new ListNode(9);
     // ListNode node1 = new ListNode(1);
     // ListNode node2 = new ListNode(9);
@@ -52,14 +57,29 @@ public class AlgorithmTitles {
     // link = link.next;
     // }
     // System.out.println(Solution_ListNodeAdd.addTwoNumbers(node, node1).val);
-    
+
     // printJC0Num.printNum(100);
-    
+
     // Nod51_1009.bigTry(101);
-    
-    sumToK.printK();
+
+    // sumToK.printK();
+
+    // getBigSumFromTower.get();
+
+    // Dp1002_Vayne.test();
+
+    // Nod1015.print();
+
+    // Nod1015.flowerNum();
+
+    int[] a = Nod1016.getLen(6000344752545454545L);
+    for (int i : a) {
+      System.out.println(i);
+    }
+    System.out.println(a.length);
+
   }
-  
+
 }
 
 /* 爬梯子 */
@@ -86,11 +106,12 @@ class climbStairs {
       }
       return result;
     }
+
   }
 }
 
 /**
- * 
+ *
  * 字母数字的重排序 给一包含大写字母和整数(从 0 到 9)的字符串, 试写一函数返回有序的字母以及数字和. 样例 给出 str = AC2BEW3, 返回 ABCEW5 字母按字母表的顺序排列,
  * 接着是整数的和(2 和 3).
  *
@@ -106,7 +127,7 @@ class NumWordsRearrange {
     int com = 0;
     int sum = 0;
     List a = new ArrayList();
-    
+
     for (int i = 0; i < str.length(); i++) {
       com = Integer.valueOf(str.charAt(i));
       if (com <= 57) {
@@ -115,14 +136,14 @@ class NumWordsRearrange {
         a = sortList(a, com, str.charAt(i));
       }
     }
-    
+
     String result = "";
     for (int j = 0; j < a.size(); j++) {
       result = result + a.get(j);
     }
     return result + sum;
   }
-  
+
   static public List sortList(List a, int num, char c) {
     int sb = 1;// 哨兵 1表示在末尾,0则表示在中间
     char x;
@@ -130,7 +151,7 @@ class NumWordsRearrange {
       a.add(c);
       return a;
     }
-    
+
     for (int i = 0; i < a.size(); i++) {
       if (Integer.valueOf(c) < Integer.valueOf((char) a.get(i))) {
         a.add('t');
@@ -153,7 +174,7 @@ class NumWordsRearrange {
 
 // 第K大快排解决方案
 class TheKBiggestNum {
-  
+
   static public int kthLargestElement(int k, int[] nums) {
     // write your code here
     // 用快排 j=n-k 就是第k大元素
@@ -164,7 +185,7 @@ class TheKBiggestNum {
     quickSort(nums, 0, nums.length - 1, k);
     return nums[k - 1];
   }
-  
+
   static public void quickSort(int[] nums, int l, int h, int k) {
     if (l >= h)
       return;
@@ -177,7 +198,7 @@ class TheKBiggestNum {
       return;
     }
   }
-  
+
   static public int sort(int[] nums, int l, int h) {
     int i = l;
     int j = h + 1;
@@ -196,7 +217,7 @@ class TheKBiggestNum {
     exch(nums, l, j);
     return j;
   }
-  
+
   static public void exch(int[] nums, int m, int n) {
     int temp = nums[m];
     nums[m] = nums[n];
@@ -215,7 +236,7 @@ class TheKBiggestNum_BinaryTree {
     }
     return nums[nums.length - k];
   }
-  
+
   static public void bigHeap(int[] nums, int n) {
     for (int i = n; i >= 1; i--) {
       if (nums[(i - 1) / 2] < nums[i]) {
@@ -223,7 +244,7 @@ class TheKBiggestNum_BinaryTree {
       }
     }
   }
-  
+
   static public void exch(int[] nums, int m, int n) {
     int temp = nums[m];
     nums[m] = nums[n];
@@ -262,7 +283,7 @@ class sortNutsAndBolts {
     // write your code here
     sortProd(nuts, bolts, 0, bolts.length - 1, compare);
   }
-  
+
   static void sortProd(String[] nuts, String[] bolts, int l, int h, NBCompare compare) {
     if (l >= h)
       return;
@@ -271,10 +292,10 @@ class sortNutsAndBolts {
       exch(nuts, i, j);
       sortProd(nuts, bolts, l, j - 1, compare);
       sortProd(nuts, bolts, j + 1, h, compare);
-      
+
     }
   }
-  
+
   // 对Bolts排序
   static int sortBolts(String nut, String[] bolts, int l, int h, NBCompare compare) {
     int i = l;
@@ -293,7 +314,7 @@ class sortNutsAndBolts {
     exch(bolts, l, j);
     return j;
   }
-  
+
   static void exch(String[] a, int i, int j) {
     String temp = a[i];
     a[i] = a[j];
@@ -304,12 +325,12 @@ class sortNutsAndBolts {
 class TreeNode {
   public int val;
   public TreeNode left, right;
-  
+
   public TreeNode(int val) {
     this.val = val;
     this.left = this.right = null;
   }
-  
+
   public static int minDepth(TreeNode root) {
     // write your code here
     if (root == null)
@@ -322,7 +343,7 @@ class TreeNode {
       return getDepth(root.left, 2);
     return getDepth(root, 1);
   }
-  
+
   public static int getDepth(TreeNode root, int depth) {
     depth++;
     int left = depth;
@@ -333,7 +354,7 @@ class TreeNode {
     }
     return left <= right ? left : right;
   }
-  
+
   public static int run(TreeNode root) {
     if (root == null)
       return 0;
@@ -346,7 +367,7 @@ class TreeNode {
 class ListNode {
   int val;
   ListNode next;
-  
+
   ListNode(int x) {
     val = x;
   }
@@ -422,7 +443,7 @@ class Solution_ListNodeAdd {
     }
     return header.next;
   }
-  
+
   // 逆序排列 1->2->3->4 4324 1->2->3 321 加和 4324+321 = 4645
   static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
     ListNode node1 = l1;
@@ -458,7 +479,7 @@ class Solution_ListNodeAdd {
         l2 = l2.next;
     }
     long num = num_l1 + num_l2;
-    
+
     long temp_num = num;
     int bit = 0;
     do {
@@ -508,7 +529,7 @@ class N_N {
     }
     System.out.println(a[index]);
   }
-  
+
   static int getRemainder(int temp) {
     int time = 10;
     temp %= time;
@@ -540,7 +561,7 @@ class Nod51_1009 {
     int low;
     int mut = 1;
     int num = 0;
-    
+
     while (n / mut != 0) {
       index = (n / mut) % 10; // 个位、十位、百位。。
       high = n / (mut * 10);// 当前位高位
@@ -618,7 +639,7 @@ class sumToK {
       System.out.println("No Solution");
     }
   }
-  
+
   public static int check(int a[], int value, int l, int h) {
     // 二分
     if (l > h)
@@ -631,7 +652,7 @@ class sumToK {
     else
       return 1;
   }
-  
+
   // 对a排序
   public static int[] quickSort(int[] a, int l, int h) {
     if (l >= h)
@@ -641,7 +662,7 @@ class sumToK {
     quickSort(a, j + 1, h);
     return a;
   }
-  
+
   public static int partition(int[] a, int l, int h) {
     int base = a[l];
     int i = l;
@@ -662,10 +683,183 @@ class sumToK {
     exch(a, l, j); // 将base = a[j] 即切分值一直留在a[j]中
     return j;
   }
-  
+
   public static void exch(int[] a, int i, int j) {
     int temp = a[i];
     a[i] = a[j];
     a[j] = temp;
+  }
+}
+
+// 1002 数塔取数问题
+class getBigSumFromTower {
+  public static void get() {
+    try {
+      BufferedReader bur = new BufferedReader(new InputStreamReader(System.in));
+      int N = Integer.parseInt(bur.readLine());
+      // Scanner sc = new Scanner(System.in);
+      // int N = sc.nextInt(); // 塔高
+      int[][] a = new int[N][N];
+      for (int i = 0; i < N; i++) {
+        StringTokenizer stk = new StringTokenizer(bur.readLine());
+        int j = 0;
+        while (stk.hasMoreElements()) {
+          a[i][j] = Integer.parseInt(stk.nextToken());
+          j++;
+        }
+      }
+      // for (int i = 0; i < N; i++) {
+      // for (int j = 0; j <= i; j++) {
+      // a[i][j] = sc.nextInt();
+      // }
+      // }
+      // dp 下一层+上一层较大的数
+      for (int i = 1; i < N; i++) {
+        for (int j = 0; j <= i; j++) {
+          if (j == 0)
+            a[i][j] += a[i - 1][j];
+          else if (i == j)
+            a[i][j] += a[i - 1][j - 1];
+          else
+            a[i][j] += a[i - 1][j] >= a[i - 1][j - 1] ? a[i - 1][j] : a[i - 1][j - 1];
+        }
+      }
+
+      int result = 0;
+      int m = 0;
+      while (m < N) {
+        result = a[N - 1][m] > result ? a[N - 1][m] : result;
+        m++;
+      }
+      System.out.println(result);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+}
+
+/**
+ * 51nod, 1002 数塔取数问题 基准时间限制：1 秒 空间限制：131072 KB 分值: 5 难度：1级算法题
+ *
+ * http://www.51nod.com/onlineJudge/questionCode.html#!problemId=1002
+ *
+ * @author 破晓
+ *
+ */
+class Dp1002 {
+  static int[] tower = new int[125255];
+  static int len = 0;
+
+  public static void main(String[] args) {
+    BufferedReader bur = new BufferedReader(new InputStreamReader(System.in));
+    try {
+      int N = Integer.parseInt(bur.readLine());
+      for (int i = 0; i < N; i++) {
+        StringTokenizer stk = new StringTokenizer(bur.readLine());
+        while (stk.hasMoreElements())
+          tower[len++] = Integer.parseInt(stk.nextToken());
+      }
+
+      int[] dp = new int[N + 1];
+      for (int i = N; i > 0; i--)
+        for (int j = 0; j < i; j++)
+          dp[j] = Math.max(dp[j], dp[j + 1]) + tower[--len];
+
+      System.out.println(dp[0]);
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+}
+
+class Dp1002_Vayne {
+  public static void test() {
+    BufferedReader bur = new BufferedReader(new InputStreamReader(System.in));
+    try {
+      int n = Integer.parseInt(bur.readLine());
+      int[][] dp = new int[n][n];
+      dp[0][0] = Integer.parseInt(bur.readLine());
+      int max = 0;
+      for (int i = 1; i < n; i++) { // 层数
+        StringTokenizer stk = new StringTokenizer(bur.readLine());
+        for (int j = 0; j <= i; j++) { // 每一层读取的个数
+          int tmp = Integer.parseInt(stk.nextToken());
+          if (j == 0) {
+            dp[i][j] = dp[i - 1][j] + tmp;
+          } else {
+            dp[i][j] = Math.max(dp[i - 1][j - 1], dp[i - 1][j]) + tmp;
+          }
+          max = Math.max(max, dp[i][j]);
+        }
+      }
+      System.out.println(max);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+}
+
+class Nod1015 {
+  static void flowerNum() {
+    Scanner sc = new Scanner(System.in);
+    int M = sc.nextInt();
+    int[] nums = new int[] { 153, 370, 371, 407, 1634 };
+
+    for (int i = 0; i < nums.length; i++) {
+      if (nums[i] > M) {
+        System.out.println(nums[i]);
+        break;
+      }
+    }
+  }
+
+  static void print() {
+    // 打印出所有的水仙花数
+    for (int i = 100000; i < 1000000; i++) {
+      if (i == Math.pow(i % 10, 6) + Math.pow(i % 100 / 10, 6) + Math.pow(i % 1000 / 100, 6) + Math
+        .pow(i % 10000 / 1000, 6) + Math.pow(i % 100000 / 10000, 6) + Math.pow(i / 100000, 6))
+        System.out.println(i);
+    }
+  }
+
+}
+
+class Nod1016 {
+  static void flowerNum() {
+    Scanner sc = new Scanner(System.in);
+    long M = sc.nextLong();
+    int[] a = getLen(M);// 0-len:个十百千万....位
+    int len = a.length;
+    long num = 0;
+    for (int i : a) {// M是否为水仙花数
+      num += Math.pow(i, len);
+    }
+    boolean flag = false;
+    if (num == M) {
+      System.out.println(M);
+      flag = true;
+    } else { // 找到大于M的第一个水仙花数：首先找长度为len的 len+1 len+2..
+      for (int i = len; i < 64; i++) {
+
+      }
+    }
+  }
+
+  static int[] getLen(long n) {
+    long temp = n;
+    int count = 0;
+    while (n > 0) {
+      count++;
+      n = n / 10;
+    }
+    int[] a = new int[count];
+    int index = 0;
+    while (temp > 0) {
+      a[index] = (int) temp % 10;
+      index++;
+      temp /= 10;
+    }
+    return a;
   }
 }
