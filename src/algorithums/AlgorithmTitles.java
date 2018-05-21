@@ -8,11 +8,10 @@
  */
 
 import java.io.BufferedReader;
-import java.util.StringTokenizer;
+import java.io.BufferedWriter;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.io.OutputStreamWriter;
+import java.util.*;
 
 /**
  * 算法题目
@@ -30,7 +29,7 @@ public class AlgorithmTitles {
     // String[] bolts = { "AB", "GG", "DD", "BC" };
     // NBCompare compare = new NBCompare();
     // sortNutsAndBolts.sortNutsAndBolts(nuts, bolts, compare);
-
+    
     // TreeNode node1 = new TreeNode(1);
     // TreeNode node2 = new TreeNode(1);
     // TreeNode node3 = new TreeNode(1);
@@ -46,7 +45,7 @@ public class AlgorithmTitles {
     // node3.right = node7;
     // int min = TreeNode.run(node1);
     // System.out.println(min);
-
+    
     // ListNode node = new ListNode(9);
     // ListNode node1 = new ListNode(1);
     // ListNode node2 = new ListNode(9);
@@ -57,29 +56,35 @@ public class AlgorithmTitles {
     // link = link.next;
     // }
     // System.out.println(Solution_ListNodeAdd.addTwoNumbers(node, node1).val);
-
+    
     // printJC0Num.printNum(100);
-
+    
     // Nod51_1009.bigTry(101);
-
+    
     // sumToK.printK();
-
+    
     // getBigSumFromTower.get();
-
+    
     // Dp1002_Vayne.test();
-
+    
     // Nod1015.print();
-
+    
     // Nod1015.flowerNum();
-
-    int[] a = Nod1016.getLen(6000344752545454545L);
-    for (int i : a) {
-      System.out.println(i);
-    }
-    System.out.println(a.length);
-
+    
+    // int[] a = Nod1016.getLen(6000344752545454545L);
+    // for (int i : a) {
+    // System.out.println(i);
+    // }
+    // System.out.println(a.length);
+    
+    // System.out.println(Math.sqrt(87604414021L));
+    // Nod1080_Vayne.printNums(87604414021L);
+    // 143711 258750
+    
+    Nod1082_Sim.printNums();
+    // Nod1082.Nod1082();
   }
-
+  
 }
 
 /* 爬梯子 */
@@ -106,7 +111,7 @@ class climbStairs {
       }
       return result;
     }
-
+    
   }
 }
 
@@ -127,7 +132,7 @@ class NumWordsRearrange {
     int com = 0;
     int sum = 0;
     List a = new ArrayList();
-
+    
     for (int i = 0; i < str.length(); i++) {
       com = Integer.valueOf(str.charAt(i));
       if (com <= 57) {
@@ -136,14 +141,14 @@ class NumWordsRearrange {
         a = sortList(a, com, str.charAt(i));
       }
     }
-
+    
     String result = "";
     for (int j = 0; j < a.size(); j++) {
       result = result + a.get(j);
     }
     return result + sum;
   }
-
+  
   static public List sortList(List a, int num, char c) {
     int sb = 1;// 哨兵 1表示在末尾,0则表示在中间
     char x;
@@ -151,7 +156,7 @@ class NumWordsRearrange {
       a.add(c);
       return a;
     }
-
+    
     for (int i = 0; i < a.size(); i++) {
       if (Integer.valueOf(c) < Integer.valueOf((char) a.get(i))) {
         a.add('t');
@@ -174,7 +179,7 @@ class NumWordsRearrange {
 
 // 第K大快排解决方案
 class TheKBiggestNum {
-
+  
   static public int kthLargestElement(int k, int[] nums) {
     // write your code here
     // 用快排 j=n-k 就是第k大元素
@@ -185,7 +190,7 @@ class TheKBiggestNum {
     quickSort(nums, 0, nums.length - 1, k);
     return nums[k - 1];
   }
-
+  
   static public void quickSort(int[] nums, int l, int h, int k) {
     if (l >= h)
       return;
@@ -198,7 +203,7 @@ class TheKBiggestNum {
       return;
     }
   }
-
+  
   static public int sort(int[] nums, int l, int h) {
     int i = l;
     int j = h + 1;
@@ -217,7 +222,7 @@ class TheKBiggestNum {
     exch(nums, l, j);
     return j;
   }
-
+  
   static public void exch(int[] nums, int m, int n) {
     int temp = nums[m];
     nums[m] = nums[n];
@@ -236,7 +241,7 @@ class TheKBiggestNum_BinaryTree {
     }
     return nums[nums.length - k];
   }
-
+  
   static public void bigHeap(int[] nums, int n) {
     for (int i = n; i >= 1; i--) {
       if (nums[(i - 1) / 2] < nums[i]) {
@@ -244,7 +249,7 @@ class TheKBiggestNum_BinaryTree {
       }
     }
   }
-
+  
   static public void exch(int[] nums, int m, int n) {
     int temp = nums[m];
     nums[m] = nums[n];
@@ -283,7 +288,7 @@ class sortNutsAndBolts {
     // write your code here
     sortProd(nuts, bolts, 0, bolts.length - 1, compare);
   }
-
+  
   static void sortProd(String[] nuts, String[] bolts, int l, int h, NBCompare compare) {
     if (l >= h)
       return;
@@ -292,10 +297,10 @@ class sortNutsAndBolts {
       exch(nuts, i, j);
       sortProd(nuts, bolts, l, j - 1, compare);
       sortProd(nuts, bolts, j + 1, h, compare);
-
+      
     }
   }
-
+  
   // 对Bolts排序
   static int sortBolts(String nut, String[] bolts, int l, int h, NBCompare compare) {
     int i = l;
@@ -314,7 +319,7 @@ class sortNutsAndBolts {
     exch(bolts, l, j);
     return j;
   }
-
+  
   static void exch(String[] a, int i, int j) {
     String temp = a[i];
     a[i] = a[j];
@@ -325,12 +330,12 @@ class sortNutsAndBolts {
 class TreeNode {
   public int val;
   public TreeNode left, right;
-
+  
   public TreeNode(int val) {
     this.val = val;
     this.left = this.right = null;
   }
-
+  
   public static int minDepth(TreeNode root) {
     // write your code here
     if (root == null)
@@ -343,7 +348,7 @@ class TreeNode {
       return getDepth(root.left, 2);
     return getDepth(root, 1);
   }
-
+  
   public static int getDepth(TreeNode root, int depth) {
     depth++;
     int left = depth;
@@ -354,7 +359,7 @@ class TreeNode {
     }
     return left <= right ? left : right;
   }
-
+  
   public static int run(TreeNode root) {
     if (root == null)
       return 0;
@@ -367,7 +372,7 @@ class TreeNode {
 class ListNode {
   int val;
   ListNode next;
-
+  
   ListNode(int x) {
     val = x;
   }
@@ -443,7 +448,7 @@ class Solution_ListNodeAdd {
     }
     return header.next;
   }
-
+  
   // 逆序排列 1->2->3->4 4324 1->2->3 321 加和 4324+321 = 4645
   static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
     ListNode node1 = l1;
@@ -479,7 +484,7 @@ class Solution_ListNodeAdd {
         l2 = l2.next;
     }
     long num = num_l1 + num_l2;
-
+    
     long temp_num = num;
     int bit = 0;
     do {
@@ -529,7 +534,7 @@ class N_N {
     }
     System.out.println(a[index]);
   }
-
+  
   static int getRemainder(int temp) {
     int time = 10;
     temp %= time;
@@ -561,7 +566,7 @@ class Nod51_1009 {
     int low;
     int mut = 1;
     int num = 0;
-
+    
     while (n / mut != 0) {
       index = (n / mut) % 10; // 个位、十位、百位。。
       high = n / (mut * 10);// 当前位高位
@@ -639,7 +644,7 @@ class sumToK {
       System.out.println("No Solution");
     }
   }
-
+  
   public static int check(int a[], int value, int l, int h) {
     // 二分
     if (l > h)
@@ -652,7 +657,7 @@ class sumToK {
     else
       return 1;
   }
-
+  
   // 对a排序
   public static int[] quickSort(int[] a, int l, int h) {
     if (l >= h)
@@ -662,7 +667,7 @@ class sumToK {
     quickSort(a, j + 1, h);
     return a;
   }
-
+  
   public static int partition(int[] a, int l, int h) {
     int base = a[l];
     int i = l;
@@ -683,7 +688,7 @@ class sumToK {
     exch(a, l, j); // 将base = a[j] 即切分值一直留在a[j]中
     return j;
   }
-
+  
   public static void exch(int[] a, int i, int j) {
     int temp = a[i];
     a[i] = a[j];
@@ -724,7 +729,7 @@ class getBigSumFromTower {
             a[i][j] += a[i - 1][j] >= a[i - 1][j - 1] ? a[i - 1][j] : a[i - 1][j - 1];
         }
       }
-
+      
       int result = 0;
       int m = 0;
       while (m < N) {
@@ -749,7 +754,7 @@ class getBigSumFromTower {
 class Dp1002 {
   static int[] tower = new int[125255];
   static int len = 0;
-
+  
   public static void main(String[] args) {
     BufferedReader bur = new BufferedReader(new InputStreamReader(System.in));
     try {
@@ -759,14 +764,14 @@ class Dp1002 {
         while (stk.hasMoreElements())
           tower[len++] = Integer.parseInt(stk.nextToken());
       }
-
+      
       int[] dp = new int[N + 1];
       for (int i = N; i > 0; i--)
         for (int j = 0; j < i; j++)
           dp[j] = Math.max(dp[j], dp[j + 1]) + tower[--len];
-
+        
       System.out.println(dp[0]);
-
+      
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -805,7 +810,7 @@ class Nod1015 {
     Scanner sc = new Scanner(System.in);
     int M = sc.nextInt();
     int[] nums = new int[] { 153, 370, 371, 407, 1634 };
-
+    
     for (int i = 0; i < nums.length; i++) {
       if (nums[i] > M) {
         System.out.println(nums[i]);
@@ -813,7 +818,7 @@ class Nod1015 {
       }
     }
   }
-
+  
   static void print() {
     // 打印出所有的水仙花数
     for (int i = 100000; i < 1000000; i++) {
@@ -822,7 +827,7 @@ class Nod1015 {
         System.out.println(i);
     }
   }
-
+  
 }
 
 class Nod1016 {
@@ -841,11 +846,11 @@ class Nod1016 {
       flag = true;
     } else { // 找到大于M的第一个水仙花数：首先找长度为len的 len+1 len+2..
       for (int i = len; i < 64; i++) {
-
+        
       }
     }
   }
-
+  
   static int[] getLen(long n) {
     long temp = n;
     int count = 0;
@@ -861,5 +866,154 @@ class Nod1016 {
       temp /= 10;
     }
     return a;
+  }
+}
+
+// 1080 两个数的平方和
+class Nod1080 {
+  public static void printNums(int N) {
+    int n = (int) Math.sqrt(N);
+    for (int i = 1; i <= n; i++) {
+      for (int j = i; j <= n; j++) {
+        if (i * i + j * j == N) {
+          System.out.println(i + " " + j);
+          break;
+        }
+      }
+    }
+  }
+}
+
+class Nod1080_Vayne {
+  public static void printNums(long N) {
+    int M = (int) Math.sqrt(N);
+    for (long i = 0; i <= M; i++) {
+      int num = (int) Math.sqrt(N - i * i);
+      if (num == Math.sqrt(N - i * i) && i <= num) {
+        System.out.println(i + " " + num);
+      }
+    }
+  }
+}
+
+// 1082 小于等于N且与7无关的数的平方和
+class Nod1082_Sim {
+  public static void printNums() {
+    long[] t = table();
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
+    try {
+      int N = Integer.parseInt(reader.readLine());
+      while (N-- != 0) {
+        writer.write((t[Integer.parseInt(reader.readLine())])+"\n");
+      }
+      writer.flush();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+  
+  public static boolean check(int N) {
+    if (N % 7 == 0)
+      return false;
+    int tmp = N;
+    while (tmp > 1) {
+      if (tmp % 10 == 7) {
+        return false;
+      }
+      tmp /= 10;
+    }
+    return true;
+  }
+  
+  public static long[] table() {
+    long[] t = new long[1000002];
+    t[1] = 1;
+    for (int i = 2; i <= 1000000; i++) {
+      if (check(i)) {
+        t[i] = t[i - 1] + (long) i * i;
+      } else {
+        t[i] = t[i - 1];
+      }
+    }
+    return t;
+  }
+}
+
+class Nod1082_Complex {
+  public static void Nod1082() {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
+    try {
+      int N = Integer.parseInt(reader.readLine());
+      int[] a = new int[N];
+      int i = 0;
+      while (i < N) {
+        a[i] = Integer.parseInt(reader.readLine());
+        i++;
+      }
+      Map<Integer, Long> map = new HashMap<>(); // x,n x对应的与7无关的平方和
+      for (int m = 0; m < N; m++) {
+        long num = getSum(a[m], map);
+        writer.write(num+"\n");
+        map.put(a[m], num);
+      }
+      writer.flush();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+  
+  public static boolean check(int N) {
+    if (N % 7 == 0)
+      return false;
+    int tmp = N;
+    while (tmp > 1) {
+      if (tmp % 10 == 7) {
+        return false;
+      }
+      tmp /= 10;
+    }
+    return true;
+  }
+  
+  public static long getFirstSum(int N) {
+    long sum = 0;
+    for (int i = 0; i <= N; i++) {
+      if (check(i))
+        sum += (long) i * i;
+    }
+    return sum;
+  }
+  
+  public static long getSum(int N, Map<Integer, Long> map) {
+    if (map.size() == 0) {
+      return getFirstSum(N);
+    }
+    Set<Integer> keySet = map.keySet();
+    boolean lessExistFlag = false; // 是否存在较小值
+    int tmp = 0;
+    for (int i : keySet) {
+      if (i == N) // 相等直接返回该key对应的value
+        return map.get(i);
+      if (N - i > 0)
+        tmp = N - i;
+      if (N - i > 0 && N - i <= tmp) {
+        // 获取到最接近tmp的sum键
+        tmp = N - i;
+        lessExistFlag = true;
+      }
+    }
+    long curSum;
+    if (!lessExistFlag) {
+      curSum = getFirstSum(N);
+    } else {
+      curSum = map.get(N - tmp);
+      for (int i = N - tmp + 1; i <= N; i++) {
+        if (check(i))
+          curSum += (long) i * i;
+      }
+    }
+    return curSum;
   }
 }
