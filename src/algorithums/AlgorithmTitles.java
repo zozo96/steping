@@ -7,10 +7,7 @@
  * 2018-03-28 - Songyanyan - 创建。
  */
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.util.*;
 
 /**
@@ -81,10 +78,42 @@ public class AlgorithmTitles {
     // Nod1080_Vayne.printNums(87604414021L);
     // 143711 258750
     
-    Nod1082_Sim.printNums();
+    // Nod1082_Sim.printNums();
     // Nod1082.Nod1082();
+    
+    // Nod1083.Nod1083();
+    
+    // Nod1087.Nod1087();
+    
+    // Nod1090.Nod1090();
+    
+    // Nod1091.Nod1091();
+    
+    // Nod1182.Nod1182();
+    
+    // Nod1090.Nod1090();
+    // Nod1090_Sim.Nod1090();
+    // Nod1267.Nod1267();
+    
+    // Nod1283.Nod1283();
+    
+    // Nod1284.Nod1284();
+    // Nod1284.print();
+    
+    // Nod1289.Nod1289();
+    
+    // Nod1305.Nod1305();
+    
+    // Nod1344.Nod1344();
+    // Nod2133.Nod2133();
+    
+    // Nod2020.Nod2020();
+    
+    // Nod1347.Nod1347();
+    
+    // Nod1381.Nod1381();
+    
   }
-  
 }
 
 /* 爬梯子 */
@@ -905,7 +934,7 @@ class Nod1082_Sim {
     try {
       int N = Integer.parseInt(reader.readLine());
       while (N-- != 0) {
-        writer.write((t[Integer.parseInt(reader.readLine())])+"\n");
+        writer.write((t[Integer.parseInt(reader.readLine())]) + "\n");
       }
       writer.flush();
     } catch (Exception e) {
@@ -955,7 +984,7 @@ class Nod1082_Complex {
       Map<Integer, Long> map = new HashMap<>(); // x,n x对应的与7无关的平方和
       for (int m = 0; m < N; m++) {
         long num = getSum(a[m], map);
-        writer.write(num+"\n");
+        writer.write(num + "\n");
         map.put(a[m], num);
       }
       writer.flush();
@@ -1015,5 +1044,622 @@ class Nod1082_Complex {
       }
     }
     return curSum;
+  }
+}
+
+class Nod1083 {
+  public static void Nod1083() {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    try {
+      int N = Integer.parseInt(reader.readLine());
+      int[][] a = new int[N][N];
+      for (int i = 0; i < N; i++) { // 层数
+        StringTokenizer stk = new StringTokenizer(reader.readLine());
+        for (int j = 0; j < N; j++) { // 每一层读取的个数
+          int tmp = Integer.parseInt(stk.nextToken());
+          if (i == 0 && j == 0) {
+            a[i][j] = tmp;
+            continue;
+          }
+          if (j == 0) {
+            a[i][j] = a[i - 1][j] + tmp;
+          } else {
+            if (i == 0) { // 第一行
+              a[i][j] = a[i][j - 1] + tmp;
+            } else { // 其余行
+              a[i][j] = Math.max(a[i][j - 1], a[i - 1][j]) + tmp;
+            }
+          }
+        }
+      }
+      System.out.println(a[N - 1][N - 1]);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+}
+
+class Nod1087 {
+  public static void Nod1087() {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
+    try {
+      int N = Integer.parseInt(reader.readLine());
+      while (N > 0) {
+        int n = Integer.parseInt(reader.readLine());
+        if (n == 1) {
+          System.out.println(1);
+          continue;
+        }
+        int d = 2 * (n - 1);
+        int mid = (int) Math.sqrt(d);
+        if (mid * (mid + 1) == d) {
+          writer.write("1\n");
+        } else {
+          writer.write("0\n");
+        }
+        N--;
+      }
+      writer.flush();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+}
+
+class Nod1090_Sim {
+  
+  void solution_Vayne() {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int arr[] = new int[N];
+    for (int i = 0; i < N; i++) {
+      arr[i] = sc.nextInt();
+    }
+    Arrays.sort(arr);
+    for (int i = 0; i < N; i++) {
+      int j, k, x;
+      j = i + 1;
+      k = N - 1;
+      while (j < k) {
+        x = arr[i] + arr[j] + arr[k];
+        if (x < 0)
+          j++;
+        else if (x > 0)
+          k--;
+        else {
+          System.out.println(arr[i] + " " + arr[j] + " " + arr[k]);
+          j++;
+          k--;
+        }
+      }
+    }
+  }
+  
+  public static void Nod1090() { // NO1 加油~
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
+    try {
+      int N = Integer.parseInt(reader.readLine());
+      int[] a = new int[N];
+      while (true) {
+        N--;
+        a[N] = Integer.parseInt(reader.readLine());
+        if (N == 0)
+          break;
+      }
+      boolean flag = false;
+      Arrays.sort(a);
+      for (int i = 0; i < a.length - 1 && a[i] < 0; i++) { // for+中间逼近查值
+        int s = i + 1;
+        int e = a.length - 1;
+        while (s < e) {
+          while (a[i] + a[s] + a[e] < 0) {
+            s++;
+            if (s == e)
+              break;
+          }
+          while (a[i] + a[s] + a[e] > 0) {
+            e--;
+            if (s == e)
+              break;
+          }
+          if (s == e)
+            break;
+          if (a[i] + a[s] + a[e] == 0) {
+            writer.write(a[i] + " " + a[s] + " " + a[e] + "\n");
+            flag = true;
+            s++;
+            e--;
+          } else {
+            if (a[i] + a[s] + a[e] < 0)
+              s++;
+            else
+              e--;
+          }
+        }
+      }
+      if (!flag)
+        writer.write("No Solution\n");
+      writer.flush();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+}
+
+class Nod1090 {// 广义二分算法
+  public static void Nod1090() {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
+    try {
+      int N = Integer.parseInt(reader.readLine());
+      int[] a = new int[N];
+      while (true) {
+        N--;
+        a[N] = Integer.parseInt(reader.readLine());
+        if (N == 0)
+          break;
+      }
+      Arrays.sort(a);
+      int index = getIndex(a);
+      if (index == -1) {
+        writer.write("No Solution\n");
+      } else {
+        boolean flag = false;
+        for (int i = 0; i < a.length - 1; i++) {
+          if (a[i] < 0) {
+            for (int key = a[i] + 1; key <= Math.abs(a[i]) / 2; key++) {
+              if (key == Math.abs(a[i]) - key)
+                continue;
+              if (binarySearch(a, Math.abs(a[i]) - key,
+                index, a.length - 1) && binarySearch(a, key, i + 1, a.length - 1)) {
+                writer.write(a[i] + " " + key + " " + (Math.abs(a[i]) - key) + "\n");
+                flag = true;
+              }
+            }
+          } else
+            break;
+        }
+        if (!flag)
+          writer.write("No Solution\n");
+      }
+      writer.flush();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+  
+  public static boolean binarySearch(int[] a, int key, int l, int h) {
+    if (l > h)
+      return false;
+    int mid = (l + h) / 2;
+    if (key < a[mid])
+      return binarySearch(a, key, l, mid - 1);
+    else if (key > a[mid])
+      return binarySearch(a, key, mid + 1, h);
+    else
+      return true;
+  }
+  
+  public static int getIndex(int[] a) {
+    // 获取大于等于0的下标
+    for (int i = 1; i < a.length; i++) {
+      if (a[i - 1] < 0 && a[i] >= 0)
+        return i;
+    }
+    return -1;
+  }
+}
+
+class Nod1091 {
+  static class Line {
+    private int s;
+    private int e;
+    
+    Integer getS() {
+      return s;
+    }
+    
+    Integer getE() {
+      return e;
+    }
+  }
+  
+  public static void Nod1091() {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    try {
+      int N = Integer.parseInt(reader.readLine());
+      List<Line> lines = new ArrayList<Line>();
+      while (N > 0) {
+        StringTokenizer stk = new StringTokenizer(reader.readLine());
+        Line line = new Line();
+        line.s = Integer.parseInt(stk.nextToken());
+        line.e = Integer.parseInt(stk.nextToken());
+        lines.add(line);
+        N--;
+      }
+      lines.sort(Comparator.comparing(Line::getS));
+      int tmp = 0;// 接受最大重叠长度
+      Line compLine = lines.get(0); // 用compLine替换
+      for (int i = 1; i < lines.size(); i++) {
+        int thisE = lines.get(i).getE();
+        int thisS = lines.get(i).getS();
+        if (thisE < compLine.getE()) {
+          // 包含情况
+          if (thisE - thisS > tmp)
+            tmp = thisE - thisS;
+        } else if (thisS < compLine.getE()) { // 交叉情况
+          if (compLine.getE() - thisS > tmp)
+            tmp = compLine.getE() - thisS;
+          compLine = lines.get(i);
+        } else { // 无交叉情况
+          compLine = lines.get(i);
+        }
+      }
+      System.out.println(tmp);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+}
+
+class Nod1182 {
+  public static void Nod1182() throws IOException {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
+    int[] a = new int[26];
+    char[] c = reader.readLine().toUpperCase().toCharArray();
+    for (char i : c) {
+      a[(int) i - 65]++;
+    }
+    Arrays.sort(a);
+    int perfectNum = 0;
+    int count = 26;
+    for (int t = 25; t > 0; t--) {
+      perfectNum += count * a[t];
+      count--;
+    }
+    writer.write(perfectNum + "\n");
+    writer.flush();
+  }
+}
+
+class Nod1267 {
+  public static void Nod1267() {
+    Scanner sc = new Scanner(System.in);
+    int N = sc.nextInt();
+    int[] a = new int[N];
+    while (N > 0) {
+      N--;
+      a[N] = sc.nextInt();
+    }
+    boolean flag = false;
+    Arrays.sort(a);
+    for (int i = 0; i < a.length - 1 && a[i] < 0; i++) { // 双for选择前两个值 + 中间逼近查值
+      for (int j = i + 1; j < a.length - 2; j++) {
+        int cur = a[i] + a[j];
+        int s = j + 1;
+        int e = a.length - 1;
+        while (s < e) {
+          while (cur + a[s] + a[e] < 0) {
+            s++;
+            if (s == e)
+              break;
+          }
+          while (cur + a[s] + a[e] > 0) {
+            e--;
+            if (s == e)
+              break;
+          }
+          if (s == e)
+            break;
+          if (cur + a[s] + a[e] == 0) {
+            flag = true;
+            break;
+          } else {
+            if (cur + a[s] + a[e] < 0)
+              s++;
+            else
+              e--;
+          }
+        }
+        if (flag)
+          break;
+      }
+      if (flag)
+        break;
+    }
+    if (flag)
+      System.out.println("Yes");
+    else
+      System.out.println("No");
+  }
+}
+
+class Nod1283 {
+  public static void Nod1283() {
+    Scanner sc = new Scanner(System.in);
+    int S = Integer.parseInt(sc.next());
+    int mid = (int) Math.sqrt(S);
+    if (mid == Math.sqrt(S))
+      System.out.println(4 * mid);
+    else {
+      int i = mid;
+      int j = mid + 1;
+      int result = 0;
+      while (i != 1 || j != S) {
+        if (i * j > S) {
+          i--;
+        } else if (i * j < S) {
+          j++;
+        } else {
+          result = 2 * (i + j);
+          break;
+        }
+      }
+      if (result == 0)
+        System.out.println(2 * (1 + S));
+      else
+        System.out.println(result);
+    }
+  }
+}
+
+class Nod1284 {
+  public static void Nod1284() {// 1.容斥原理 不重复！
+    Scanner sc = new Scanner(System.in);
+    long N = sc.nextLong();
+    long a, b, c, d;
+    a = N / 2 + N / 3 + N / 5 + N / 7;
+    b = N / 6 + N / 10 + N / 14 + N / 15 + N / 21 + N / 35;
+    c = N / 30 + N / 42 + N / 70 + N / 105;
+    d = N / 210;
+    System.out.println(N - (a - b + c - d));
+  }
+  
+  static void print() { // 2.遍历
+    Scanner sc = new Scanner(System.in);
+    long N = sc.nextLong();
+    int[] a = { 2, 3, 5, 7 };
+    int sum = 0;
+    for (long i = 1; i <= N; i++) {
+      for (int j = 0; j < 4; j++) {
+        if (i % a[j] == 0) {
+          sum++;
+          break;
+        }
+      }
+    }
+    System.out.println(N - sum);
+  }
+}
+
+class Nod1289 {
+  public static void Nod1289() {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    try {
+      int N = Integer.parseInt(reader.readLine());
+      int result = N;
+      Stack<Integer> stack = new Stack<>();
+      
+      while (N > 0) {
+        StringTokenizer stk = new StringTokenizer(reader.readLine());
+        int size = Integer.parseInt(stk.nextToken());
+        int dir = Integer.parseInt(stk.nextToken());
+        
+        if (dir == 1) // 向右的均进栈
+          stack.push(size);
+        else { // 向左的与栈顶元素比较 空栈直接过 大于栈顶元素时出栈 小于栈顶元素被吃掉
+          while (!stack.empty()) {
+            if (size < stack.peek()) {
+              result--;
+              break;
+            } else {
+              stack.pop();
+              result--;
+            }
+          }
+        }
+        N--;
+      }
+      
+      System.out.println(result);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+}
+
+class Nod1305 {
+  public static void Nod1305() {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    try {
+      int N = Integer.parseInt(reader.readLine());
+      int[] a = new int[N];
+      while (N > 0) {
+        N--;
+        StringTokenizer stk = new StringTokenizer(reader.readLine());
+        a[N] = Integer.parseInt(stk.nextToken());
+      }
+      Arrays.sort(a);
+      int n1 = 0;
+      int n2 = 0;
+      
+      for (int m = 0; m < a.length; m++) {
+        if (a[m] == 1)
+          n1++;
+        else if (a[m] == 2)
+          n2++;
+        else
+          break;
+      }
+      System.out.println(n1 * (a.length - 1) + n2 * (n2 - 1) / 2);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+}
+
+class Nod1344 {
+  public static void Nod1344() {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    try {
+      int N = Integer.parseInt(reader.readLine());
+      long i = 0;
+      long tmp = 0;
+      while (N > 0) {
+        int n = Integer.parseInt(reader.readLine());
+        tmp += n;
+        if (tmp < 0) {
+          i += Math.abs(tmp);
+          tmp = 0;
+          System.out.println(i);
+        }
+        N--;
+      }
+      System.out.println(i);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+}
+
+// 9117494958645
+// 31773484794
+
+class Nod2133 {
+  public static void Nod2133() {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    try {
+      int N = Integer.parseInt(reader.readLine());
+      int[] a = new int[N];
+      while (N > 0) {
+        N--;
+        a[N] = Integer.parseInt(reader.readLine());
+      }
+      Arrays.sort(a);
+      int result = 0;
+      int i = 0;
+      while (i < a.length) {
+        result += a[i] * (a.length - i);
+        i++;
+      }
+      System.out.println(result);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+}
+
+class Nod2020 {
+  public static void Nod2020() {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
+    try {
+      int N = Integer.parseInt(reader.readLine());
+      while (N > 0) {
+        N--;
+        StringTokenizer stk = new StringTokenizer(reader.readLine());
+        int n = Integer.parseInt(stk.nextToken());
+        int k = Integer.parseInt(stk.nextToken());
+        
+        while (k > 0) {
+          n = reCompute(n);
+          k--;
+        }
+        writer.write(n + "\n");
+      }
+      writer.flush();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+  
+  public static int reCompute(int n) {
+    int[] a = new int[4];
+    int count = 0;
+    int tmp = 1000;
+    while (count < 4) {
+      a[count] = n / tmp;
+      n -= tmp * a[count];
+      tmp /= 10;
+      count++;
+    }
+    Arrays.sort(a);
+    int asc = a[3] + a[2] * 10 + a[1] * 100 + a[0] * 1000;
+    int desc = a[0] + a[1] * 10 + a[2] * 100 + a[3] * 1000;
+    return Math.abs(asc - desc);
+  }
+  
+}
+
+// 现在问题是给定一个字符串，判断他是否可以由一个对串旋转任意次得到。
+// 1. 由对串旋转任意次得到，前提得是这个字符串是对串。
+// 所以1.判断字符串长度是否为偶数 2.判断这个字符串前半段与后半段是否相同
+class Nod1347 {
+  public static void Nod1347() {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    try {
+      char[] str = reader.readLine().toCharArray();
+      int len = str.length;
+      boolean flag = true;
+      if (len % 2 != 0)
+        System.out.println("NO");
+      else {
+        for (int i = 0; i < len / 2; i++) {
+          if (str[i] != str[len / 2 + i]) {
+            System.out.println("NO");
+            flag = false;
+            break;
+          }
+        }
+        if (flag)
+          System.out.println("YES");
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+  
+  // public static void main(String[] args) { // 超时了！
+  // BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+  // BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
+  // try {
+  // String str = reader.readLine();
+  // while (!str.equals("")) {
+  // int len = str.length();
+  // if (len % 2 != 0)
+  // writer.write("NO\n");
+  // else {
+  // if (str.substring(0,
+  // len / 2).equals(str.substring(len / 2, len)))
+  // writer.write("YES\n");
+  // else
+  // writer.write("NO\n");
+  // }
+  // str = reader.readLine();
+  // }
+  // writer.flush();
+  // } catch (Exception e) {
+  // e.printStackTrace();
+  // }
+  // }
+}
+
+class Nod1381 {
+  public static void Nod1381() {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
+    try {
+      int N = Integer.parseInt(reader.readLine());
+      while (N > 0) {
+        writer.write(2 * Integer.parseInt(reader.readLine()) + "\n");
+        N--;
+      }
+      writer.flush();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 }
