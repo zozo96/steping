@@ -7,7 +7,9 @@
  * 2018-03-08 - Songyanyan - 创建。
  */
 
-import java.util.*;
+import java.io.*;
+import java.util.Arrays;
+import java.util.Set;
 
 /**
  * 算法题汇总
@@ -33,11 +35,32 @@ public class Begining {
     // System.out.println(Integer.valueOf(s));
     // System.out.println(Sort_Solution.rearrange("AC2BEW3"));
     // int a[] = { 3, 5, 2, 1, 6, 4, 4,4 };
-    int a[] = { 2, 1, 3, 2, 1 };
-    Solution.wiggleSort(a);
-    for (int i = 0; i < a.length; i++) {
-      System.out.println(a[i]);
-    }
+    
+    // int a[] = { 2, 1, 3, 2, 1 };
+    // Solution.wiggleSort(a);
+    // for (int i = 0; i < a.length; i++) {
+    // System.out.println(a[i]);
+    // }
+    
+    int[][] a = { { 1, 2, 3, 4 }, { 1, 2, 3, 4 }, { 1, 2, 3, 4 } };
+    int[][] b = a.clone();
+    
+    System.out.println(a == b); // false
+    
+    b[2][2] = 100;
+    System.out.println(a[2][2]);// 100
+    
+  }
+  
+  public Object deepClone(Object a) throws IOException, ClassNotFoundException {
+    // 将对象写入流中
+    ByteArrayOutputStream bao = new ByteArrayOutputStream();
+    ObjectOutputStream oos = new ObjectOutputStream(bao);
+    oos.writeObject(a);
+    // 将对象从流中取出
+    ByteArrayInputStream bis = new ByteArrayInputStream(bao.toByteArray());
+    ObjectInputStream ois = new ObjectInputStream(bis);
+    return ois.readObject();
   }
   
   // 有序的check

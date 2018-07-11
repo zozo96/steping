@@ -19,7 +19,7 @@ public class Item11_Clone {
 
 // 1.实现Cloneable接口
 // 2.重写clone方法
-// 3.Object类的clone()一个native方法，native方法的效率一般来说都是远高于java中的非 native方法
+// 3.Object类的clone()一个native方法，native方法的效率一般来说都是远高于java中的非native方法
 class BaseCloneClass implements Cloneable {
   public int a;
   
