@@ -42,14 +42,6 @@ public class Begining {
     // System.out.println(a[i]);
     // }
     
-    int[][] a = { { 1, 2, 3, 4 }, { 1, 2, 3, 4 }, { 1, 2, 3, 4 } };
-    int[][] b = a.clone();
-    
-    System.out.println(a == b); // false
-    
-    b[2][2] = 100;
-    System.out.println(a[2][2]);// 100
-    
   }
   
   public Object deepClone(Object a) throws IOException, ClassNotFoundException {
