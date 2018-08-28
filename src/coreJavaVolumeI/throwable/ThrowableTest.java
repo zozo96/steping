@@ -27,6 +27,15 @@ public class ThrowableTest extends IOException {
     super(gripe);
   }
   
+  /**
+   * Computes the factorial of a number
+   * 
+   * @param n
+   *          a non-negative integer
+   * @return n! = 1 * 2 * . . . * n
+   *
+   *         计算n的阶乘
+   */
   public static int factorial(int n) {
     System.out.println("factorial(" + n + "):");
     Throwable t = new Throwable();
