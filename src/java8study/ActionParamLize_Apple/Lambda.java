@@ -15,6 +15,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 import static utils.Filter.filter;
 
@@ -31,6 +32,9 @@ public class Lambda {
     // 筛选条件
     List<Apple> redApples = filter(inventory, (Apple apple) -> "red".equals(apple.getColor()));
     List<Integer> evenNums = filter(nums, (Integer i) -> i % 2 == 1);
+    
+    Stream<Apple> appleStream = nums.stream().map(Apple::new);
+    Apple[] apples = appleStream.toArray(Apple[]::new);
     
     // 用Comparator来排序：根据weight升序排序
     inventory.sort(new Comparator<Apple>() {
