@@ -32,6 +32,7 @@ public class LoggerTest {
         logger.setLevel(Level.ALL);
         final int LOG_ROTATION_COUNT = 10;
         Handler handler = new FileHandler("%h/LoggingImageViewer.log", 0, LOG_ROTATION_COUNT);
+        
       } catch (IOException e) {
         logger.log(Level.SEVERE, "Can't create log file handler", e);
       }
