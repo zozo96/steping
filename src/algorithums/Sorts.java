@@ -15,6 +15,7 @@ public class Sorts {
   public static void main(String[] args) {
     // 静态初始化
     int[] a = new int[] { 5, 1, 3, 2, 9, 11, 15, 6, 3, 1, 4 };
+    int[] d = new int[] { 3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48 };
     // 静态初始化简化
     int b[] = { 1, 2 };
     // 动态初始化
@@ -23,9 +24,11 @@ public class Sorts {
     // int[] result = DirectInsertSort.sortResult(a);
     // int[] result = ShellSort.sort(a);
     // int[] result = SimpleSelectionSort.sort(a);
-    int[] result = QuickSort.sort(a, 0, 10);
+    // int[] result = QuickSort.sort(a, 0, 10);
     // int[] result = HeapSort.sort(a);
     // int[] result = MergeSort.sort(a);
+    
+    int[] result = QuickSort2.sort(d);
     for (int i = 0; i < result.length; i++) {
       System.out.println(result[i]);
     }
@@ -85,6 +88,34 @@ class QuickSort {
     }
     SortUtils.exch(a, l, j); // 将base = a[j] 即切分值一直留在a[j]中
     return j;
+  }
+}
+
+// 快排实现2：
+// 设定比值哨兵、存储哨兵
+// 存储哨兵index = 比值哨兵index + 1
+// 对未排序部分：forEach(比值哨兵index + 1,最右指数) i < 比对哨兵、exch(i,存储哨兵)、存储哨兵index++
+class QuickSort2 {
+  static int[] sort(int[] a) {
+    doSort(a, 0, a.length - 1);
+    return a;
+  }
+  
+  static void doSort(int[] a, int l, int r) {
+    if (r - l < 1)
+      return;
+    int base = a[l];
+    int index = l + 1;
+    for (int i = l + 1; i <= r; i++) {
+      if (a[i] < base) {
+        SortUtils.exch(a, i, index);
+        index++;
+      }
+    }
+    SortUtils.exch(a, l, index - 1);
+    
+    doSort(a, l, index - 2);
+    doSort(a, index, r);
   }
 }
 
