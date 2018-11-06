@@ -91,10 +91,10 @@ class QuickSort {
   }
 }
 
-// 快排实现2：
-// 设定比值哨兵、存储哨兵
-// 存储哨兵index = 比值哨兵index + 1
-// 对未排序部分：forEach(比值哨兵index + 1,最右指数) i < 比对哨兵、exch(i,存储哨兵)、存储哨兵index++
+/**
+ * 快排实现2： 设定比值哨兵、存储哨兵 存储哨兵index = 比值哨兵index + 1 对未排序部分：forEach(比值哨兵index + 1,最右指数) i <
+ * 比对哨兵、exch(i,存储哨兵)、存储哨兵index++
+ */
 class QuickSort2 {
   static int[] sort(int[] a) {
     doSort(a, 0, a.length - 1);
