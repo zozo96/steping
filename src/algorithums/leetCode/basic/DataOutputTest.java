@@ -23,7 +23,19 @@ public class DataOutputTest {
 //        System.out.println(i);
 
         // 是否为子序列
-        Subquence subquence = new Subquence();
-        System.out.println(subquence.isSubsequence("acb","asbscr"));
+//        Subquence subquence = new Subquence();
+//        System.out.println(subquence.isSubsequence("twn",
+//                "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxtxxxxxxxxxxxxxxxxxxxxwxxxxxxxxxxxxxxxxxxxxxxxxxn"));
+
+        // 2 1 0     0
+        AddTwoLinkedListNumber addTwo = new AddTwoLinkedListNumber();
+        ListNode l1 = new ListNode(2);
+        l1.next = new ListNode(1);
+        l1.next.next = new ListNode(5);
+        ListNode l2 = new ListNode(5);
+        l2.next = new ListNode(6);
+        l2.next.next = new ListNode(5);
+        ListNode n = addTwo.addTwoNumbers(l1,l2);
+        System.out.println(n);
     }
 }

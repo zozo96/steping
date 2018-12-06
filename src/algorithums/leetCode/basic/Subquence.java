@@ -1,18 +1,22 @@
 package leetCode.basic;
 
-import java.util.Stack;
 
 public class Subquence {
     public boolean isSubsequence(String s, String t) {
         char[] tt = t.toCharArray();
-
+        char[] ss = s.toCharArray();
+        int j = ss.length - 1;
+        if (j == -1)
+            return true;
         for (int i = tt.length - 1;i >= 0; i--){
-            String c = tt[i]+"";
-            if (s.endsWith(c)){
-                s = s.substring(0, s.length() - 1);
+            char c = tt[i];
+            if (ss[j] == (c)){
+                j--;
+                if(j == -1)
+                    return true;
             }
         }
 
-        return s.length() == 0;
+        return j == -1;
     }
 }
