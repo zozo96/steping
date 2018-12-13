@@ -21,7 +21,6 @@ public class SalaryAggregation {
   public static Double sandCardSum;
   public static Double taxSum;
   public static Double accumulationFundSum;
-  public static Double roomFeeSum;
   
   public void generateSalaryAggregation(String folderPath) {
     SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
@@ -111,14 +110,6 @@ public class SalaryAggregation {
   
   public static void setAccumulationFundSum(Double accumulationFundSum) {
     SalaryAggregation.accumulationFundSum = accumulationFundSum;
-  }
-  
-  public static Double getRoomFeeSum() {
-    return roomFeeSum;
-  }
-  
-  public static void setRoomFeeSum(Double roomFeeSum) {
-    SalaryAggregation.roomFeeSum = roomFeeSum;
   }
   
   public static void main(String[] args) {
