@@ -11,8 +11,14 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+
+import static file.read.SalaryTitles.actuallyReceived;
 
 public class SalaryAggregation {
   private final static SalaryTitles[] salaryTitles = SalaryTitles.values();
@@ -62,14 +68,18 @@ public class SalaryAggregation {
             line = bufferedReader.readLine();
           }
           salary.add(map);
+          System.out.println(file.getName() + "computed: \t " + map.get(actuallyReceived.name()));
           bufferedReader.close();
         } catch (Exception e) {
           e.printStackTrace();
         }
       }
-      System.out.println(file.getName() + "computed");
+      // System.out.println(file.getName() + "computed");
     }
-    // TODO 计算Sum
+    
+    salarySum = salary.stream().mapToDouble(map -> (Double) map.get(actuallyReceived.name())).sum();
+    System.out.println("\n TotalMonth:" + salary.size() + "\t AllSum:" + salarySum + "\t Average:" +
+      new BigDecimal(salarySum / salary.size()).setScale(2, BigDecimal.ROUND_HALF_DOWN));
   }
   
   private Double getNumber(String title, String line) {
