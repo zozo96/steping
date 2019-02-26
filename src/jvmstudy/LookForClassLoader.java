@@ -28,6 +28,7 @@ public class LookForClassLoader {
   }
   
   public static void showGCInfo() {
+    // -verbose:jni
     LookForClassLoader obj = new LookForClassLoader();
     System.gc();
   }
