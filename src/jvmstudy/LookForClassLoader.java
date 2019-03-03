@@ -17,16 +17,16 @@ public class LookForClassLoader {
   private static int count = 0;
   public static void main(String[] args) {
     
-    // showGCInfo();
+    showGCInfo();
     // printXmxXms();
     // testGC();
     // testHeapDump();
-    try {
-      testStackDeep(0L, 0L, 0L);
-    } catch (Throwable e) {
-      System.out.println("deep of calling:" + count);
-      e.printStackTrace();
-    }
+    // try {
+    // testStackDeep(0L, 0L, 0L);
+    // } catch (Throwable e) {
+    // System.out.println("deep of calling:" + count);
+    // e.printStackTrace();
+    // }
   }
   
   public void findClassLoader() {
