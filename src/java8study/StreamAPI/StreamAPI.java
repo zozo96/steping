@@ -175,5 +175,10 @@ public class StreamAPI {
     // 1.迭代
     Stream.iterate(0, n -> n + 2).limit(10);
     
+    // 对HaspMap进行流化
+    HashMap<Integer, Integer> map = new HashMap<>();
+    map.entrySet().stream().sorted(((o1, o2) -> o2.getValue().compareTo(o1.getValue())))
+      .map(o -> o.getKey()).collect(Collectors.toList());
+    
   }
 }

@@ -1,3 +1,4 @@
+
 /**
  * 项目名：  steping
  * 文件名：  Sorts.java
@@ -5,6 +6,11 @@
  * 修改历史：
  * 2018-03-25 - Songyanyan - 创建。
  */
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 几种排序的实现
@@ -14,12 +20,12 @@
 public class Sorts {
   public static void main(String[] args) {
     // 静态初始化
-    int[] a = new int[] { 5, 1, 3, 2, 9, 11, 15, 6, 3, 1, 4 };
-    int[] d = new int[] { 3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48 };
+    // int[] a = new int[] { 5, 1, 3, 2, 9, 11, 15, 6, 3, 1, 4 };
+    // int[] d = new int[] { 3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48 };
     // 静态初始化简化
-    int b[] = { 1, 2 };
+    // int b[] = { 1, 2 };
     // 动态初始化
-    int[] c = new int[4];
+    // int[] c = new int[4];
     // int[] result = BubbleSort.sort(a);
     // int[] result = DirectInsertSort.sortResult(a);
     // int[] result = ShellSort.sort(a);
@@ -28,10 +34,15 @@ public class Sorts {
     // int[] result = HeapSort.sort(a);
     // int[] result = MergeSort.sort(a);
     
-    int[] result = QuickSort2.sort(d);
-    for (int i = 0; i < result.length; i++) {
-      System.out.println(result[i]);
-    }
+    // int[] result = QuickSort2.sort(d);
+    // for (int i = 0; i < result.length; i++) {
+    // System.out.println(result[i]);
+    // }
+    
+    BucketSolution solution = new BucketSolution();
+    int[] nums = { 1, 1, 1, 2, 2, 3 };
+    int k = 2;
+    System.out.println(solution.topKFrequent(nums, k));
     
   }
 }
@@ -269,6 +280,49 @@ class ShellSort {
     return a;
   }
   
+}
+
+class BucketSolution {
+  private HashMap<Integer, Integer> map = new HashMap<>();
+  
+  public List<Integer> topKFrequent(int[] nums, int k) {
+    // 桶排 -- HashMap 统计
+    int length = nums.length;
+    int i = 0;
+    while (i < length) {
+      if (!map.containsKey(nums[i])) {
+        map.put(nums[i], 1);
+      } else {
+        map.put(nums[i], map.get(nums[i]) + 1);
+      }
+      i++;
+    }
+    
+    List<Integer> rs = new ArrayList<>();
+    // 方式二 流 JDK 8
+    rs = map.entrySet().stream().sorted(((o1, o2) -> o2.getValue().compareTo(o1.getValue())))
+      .map(o -> o.getKey()).collect(Collectors.toList());
+    
+    // 方式一 JDK 7
+    // List<Map.Entry<Integer, Integer>> list = new ArrayList<>(map.entrySet());
+    // Collections.sort(list, new Comparator<Map.Entry<Integer, Integer>>() {
+    // @Override
+    // public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2) {
+    // // 降序排序
+    // return o2.getValue().compareTo(o1.getValue());
+    // }
+    // });
+    //
+    // List result1 = list.subList(0, k);
+    // Iterator it = result1.iterator();
+    // Map.Entry<Integer, Integer> entry;
+    // while (it.hasNext()) {
+    // entry = (Map.Entry<Integer, Integer>) it.next();
+    // rs.add(entry.getKey());
+    // }
+    
+    return rs;
+  }
 }
 
 class SortUtils {
