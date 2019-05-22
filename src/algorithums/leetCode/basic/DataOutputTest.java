@@ -27,15 +27,19 @@ public class DataOutputTest {
 //        System.out.println(subquence.isSubsequence("twn",
 //                "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxtxxxxxxxxxxxxxxxxxxxxwxxxxxxxxxxxxxxxxxxxxxxxxxn"));
 
-        // 2 1 0     0
-        AddTwoLinkedListNumber addTwo = new AddTwoLinkedListNumber();
-        ListNode l1 = new ListNode(2);
-        l1.next = new ListNode(1);
-        l1.next.next = new ListNode(5);
-        ListNode l2 = new ListNode(5);
-        l2.next = new ListNode(6);
-        l2.next.next = new ListNode(5);
-        ListNode n = addTwo.addTwoNumbers(l1,l2);
-        System.out.println(n);
+        // 鏈表表示整數進行加和    0
+//        AddTwoLinkedListNumber addTwo = new AddTwoLinkedListNumber();
+//        ListNode l1 = new ListNode(2);
+//        l1.next = new ListNode(1);
+//        l1.next.next = new ListNode(5);
+//        ListNode l2 = new ListNode(5);
+//        l2.next = new ListNode(6);
+//        l2.next.next = new ListNode(5);
+//        ListNode n = addTwo.addTwoNumbers(l1,l2);
+//        System.out.println(n);
+
+        // 最长不含重复字母的子串
+        SubString str = new SubString();
+        System.out.println(str.lengthOfLongestSubstring(""));
     }
 }

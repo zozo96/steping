@@ -16,6 +16,7 @@ public class Sorts {
     // 静态初始化
     int[] a = new int[] { 5, 1, 3, 2, 9, 11, 15, 6, 3, 1, 4 };
     int[] d = new int[] { 3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48 };
+    int[] e = new int[] {-1, 0 , 1 , 0};
     // 静态初始化简化
     int b[] = { 1, 2 };
     // 动态初始化
@@ -28,7 +29,7 @@ public class Sorts {
     // int[] result = HeapSort.sort(a);
     // int[] result = MergeSort.sort(a);
     
-    int[] result = QuickSort2.sort(d);
+    int[] result = QuickSort2.sort(e);
     for (int i = 0; i < result.length; i++) {
       System.out.println(result[i]);
     }
