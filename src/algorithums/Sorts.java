@@ -1,4 +1,3 @@
-
 /**
  * 项目名：  steping
  * 文件名：  Sorts.java
@@ -38,7 +37,7 @@ public class Sorts {
     // for (int i = 0; i < result.length; i++) {
     // System.out.println(result[i]);
     // }
-    
+
     BucketSolution solution = new BucketSolution();
     int[] nums = { 1, 1, 1, 2, 2, 3 };
     int k = 2;
@@ -284,7 +283,7 @@ class ShellSort {
 
 class BucketSolution {
   private HashMap<Integer, Integer> map = new HashMap<>();
-  
+
   public List<Integer> topKFrequent(int[] nums, int k) {
     // 桶排 -- HashMap 统计
     int length = nums.length;
@@ -297,12 +296,12 @@ class BucketSolution {
       }
       i++;
     }
-    
+
     List<Integer> rs = new ArrayList<>();
     // 方式二 流 JDK 8
     rs = map.entrySet().stream().sorted(((o1, o2) -> o2.getValue().compareTo(o1.getValue())))
       .map(o -> o.getKey()).collect(Collectors.toList());
-    
+
     // 方式一 JDK 7
     // List<Map.Entry<Integer, Integer>> list = new ArrayList<>(map.entrySet());
     // Collections.sort(list, new Comparator<Map.Entry<Integer, Integer>>() {
@@ -320,7 +319,7 @@ class BucketSolution {
     // entry = (Map.Entry<Integer, Integer>) it.next();
     // rs.add(entry.getKey());
     // }
-    
+
     return rs;
   }
 }
