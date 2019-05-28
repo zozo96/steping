@@ -1,0 +1,5 @@
+创建一个需要扩展的组件
+定义一个 XSD 文件描述组件内容
+创建一个文件，实现 BeanDefinitionParser 接口，用来解析 XSD 文件中的定义和组件定义
+创建一个 Handler 文件，扩展自 NamespaceHandlerSurpport, 目的是将组件注册到 Spring 容器
+编写 Spring.handlers 和 Spring.schemas 文件
