@@ -14,6 +14,13 @@ public class Demo1_ListenAndBrowse {
 //            }
 //        };
 
+        Thread hello = new Thread("TName"){
+            @Override
+            public void run() {
+                System.out.println("Thread " + Thread.currentThread().getName() + " is running");
+            }
+        };
+        hello.start();
         new Thread(Demo1_ListenAndBrowse::listenToMusic).start();
         Demo1_ListenAndBrowse.browseNews();
     }
