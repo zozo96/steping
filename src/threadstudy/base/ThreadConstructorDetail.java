@@ -18,11 +18,11 @@ public class ThreadConstructorDetail {
     final int processorNum = Runtime.getRuntime().availableProcessors();
     
     // ---------- 创建线程方式 ----------
-    // ---------- 创建线程.Way1 直接创建 ----------
+    // ---------- 创建线程.Way1 基于继承，实现Thread.run ----------
     ChildrenOfRunnable runnableTask = new ChildrenOfRunnable();
     IntStream.range(0, 2 * processorNum).mapToObj(index -> new Thread(runnableTask)).forEach(
       Thread::start);
-    // ---------- 创建线程.Way2 以子类形式 ----------
+    // ---------- 创建线程.Way2 基于组合，通过 Runnable 的实例，执行实例中的 run ----------
     Thread thread1 = new ChildrenOfThread();
     thread1.start();
     
