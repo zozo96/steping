@@ -12,7 +12,8 @@ import java.util.stream.Collectors;
 
 /**
  * join会使当线程等待下去，除非被外部打断
- * 实现同步查询南航、东航、春秋的航线 origin - destination
+ * 实现异步查询南航、东航、春秋的航线时间 origin - destination
+ * 最后再将所有结果一同返回
  *
  * @author Sophi
  * @since 2019/5/25
