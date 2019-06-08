@@ -1,7 +1,12 @@
 package base;
 
+import security.TicketWindowSyncRunnable;
+
 /**
  * 营业大厅叫号机用Runnable方式实现
+ *
+ * 改进：线程不安全
+ * @see TicketWindowSyncRunnable
  *
  * @author Sophi
  * @since 2019/5/25
@@ -9,7 +14,7 @@ package base;
 public class TicketWindowRunnable implements Runnable{
 
     private final static int MAX = 50;
-    // 依然存在线程安全问题
+    // 依然存在线程安全问题，因为线程执行的顺序不可控
     private int index = 1;
 
     @Override

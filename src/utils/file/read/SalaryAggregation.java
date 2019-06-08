@@ -49,7 +49,7 @@ public class SalaryAggregation {
           String line = bufferedReader.readLine();
           HashMap map = new HashMap<String, Double>();
           while (line != null) {
-            if (line.charAt(0) == '－') {
+            if (line.charAt(0) == '-') {
               line = bufferedReader.readLine();
               continue;
             }
