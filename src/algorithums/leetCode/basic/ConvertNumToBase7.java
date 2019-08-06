@@ -36,5 +36,8 @@ public class ConvertNumToBase7 {
 		}
 		String result = sb.toString();
 		return result.equals("") ? "0" : result;
+
+//		或者调库函数
+//		return Integer.toString(num, 7);
 	}
 }
