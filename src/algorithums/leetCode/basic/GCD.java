@@ -1,0 +1,124 @@
+package leetCode.basic;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.stream.Collectors;
+
+/**
+ * 最大公约数
+ *
+ * @author : Sonya
+ * @date : 2019/12/6 17:17
+ */
+public class GCD {
+    /**
+     * 多个值的最简比
+     */
+    public static int[] simpleByMulti(int[] source) {
+        HashSet<Integer> sourceSet = (HashSet<Integer>) Arrays.stream(source).boxed().collect(Collectors.toSet());
+        // 1. 获取多个值的最大公约数
+        while (sourceSet.size() > 1) {
+            int[] tmp = new int[sourceSet.size()];
+            Iterator ss = sourceSet.iterator();
+            for (int i = 0; i < tmp.length; i++){
+                tmp[i] = (Integer) ss.next();
+            }
+            sourceSet.clear();
+            for (int i = 0; i < tmp.length - 1; i++) {
+                sourceSet.add(fetchGCD(tmp[i], tmp[i + 1]));
+            }
+        }
+
+        Integer gcd = null;
+        Iterator it = sourceSet.iterator();
+        if (it.hasNext()) {
+            gcd = (Integer) it.next();
+        }
+
+        // 2. 计算最简比
+        int[] result = new int[source.length];
+        if (gcd != null && gcd > 0) {
+            for (int i = 0; i < source.length; i++) {
+                result[i] = source[i] / gcd;
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * 两个值的最大公约数
+     *
+     * @param m
+     * @param n
+     * @return
+     */
+    public static int fetchGCD(int m, int n) {
+        int result = 0;
+        while (n != 0) {
+            result = m % n;
+            m = n;
+            n = result;
+        }
+        return m;
+    }
+
+    /**
+     * 两个数的最简整数比
+     *
+     * @param a
+     * @param b
+     */
+    public static void simple(int a, int b) {
+        int gcd = fetchGCD(a, b);
+        System.out.print((a / gcd) + ":" + (b / gcd));
+    }
+
+    /**
+     * 两个数的最小公倍数
+     *
+     * @param a
+     * @param b
+     * @return
+     */
+    public static int multiple(int a, int b) {
+        int gcd = fetchGCD(a, b);
+        return a * (b / gcd);
+    }
+
+    public static void main(String[] args) {
+        int[] source1 = new int[]{1, 3, 5, 10, 2};
+        int[] source2 = new int[]{125, 75, 25, 10, 55};
+        int[] source3 = new int[]{1200, 750, 2500, 1000, 5500};
+        int[] res1 = simpleByMulti(source1);
+        int[] res2 = simpleByMulti(source2);
+        int[] res3 = simpleByMulti(source3);
+        System.out.println("source1");
+        printArray(source1);
+        System.out.println();
+        System.out.println("res1");
+        printArray(res1);
+        System.out.println();
+
+        System.out.println("source2");
+        printArray(source2);
+        System.out.println();
+        System.out.println("res2");
+        printArray(res2);
+        System.out.println();
+
+        System.out.println("source3");
+        printArray(source3);
+        System.out.println();
+        System.out.println("res3");
+        printArray(res3);
+        System.out.println();
+    }
+
+    private static void printArray(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+    }
+}
