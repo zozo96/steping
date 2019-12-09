@@ -48,6 +48,28 @@ public class GCD {
     }
 
     /**
+     * 多个值的最小公倍数
+     * @param source
+     * @return
+     */
+    public static int fetchGMultipleByMulti(int[] source) {
+        int[] copy = Arrays.copyOf(source, source.length);
+        // 最多计算次数
+        int maxCount = (int) Math.ceil((double) source.length / 2);
+        int count = 0;
+        while (count < maxCount) {
+            for (int i = 0; i < copy.length; ){
+                if (i + (int) Math.pow(2, count) < copy.length){
+                    copy[i] = multiple(copy[i], copy[i + (int) Math.pow(2, count)]);
+                }
+                i = i + (int)Math.pow(2, count) + 1;
+            }
+            count++;
+        }
+        return copy[0];
+    }
+
+    /**
      * 两个值的最大公约数
      *
      * @param m
@@ -88,32 +110,53 @@ public class GCD {
     }
 
     public static void main(String[] args) {
-        int[] source1 = new int[]{1, 3, 5, 10, 2};
-        int[] source2 = new int[]{125, 75, 25, 10, 55};
-        int[] source3 = new int[]{1200, 750, 2500, 1000, 5500};
-        int[] res1 = simpleByMulti(source1);
-        int[] res2 = simpleByMulti(source2);
-        int[] res3 = simpleByMulti(source3);
+//        int[] source1 = new int[]{1, 3, 5, 10, 2};
+//        int[] source2 = new int[]{125, 75, 25, 10, 55};
+//        int[] source3 = new int[]{1200, 750, 2500, 1000, 5500};
+//        int[] res1 = simpleByMulti(source1);
+//        int[] res2 = simpleByMulti(source2);
+//        int[] res3 = simpleByMulti(source3);
+//        System.out.println("source1");
+//        printArray(source1);
+//        System.out.println();
+//        System.out.println("res1");
+//        printArray(res1);
+//        System.out.println();
+//
+//        System.out.println("source2");
+//        printArray(source2);
+//        System.out.println();
+//        System.out.println("res2");
+//        printArray(res2);
+//        System.out.println();
+//
+//        System.out.println("source3");
+//        printArray(source3);
+//        System.out.println();
+//        System.out.println("res3");
+//        printArray(res3);
+//        System.out.println();
+
+        int[] source1 = new int[]{1, 3, 5, 10, 2}; // 30
+        int[] source2 = new int[]{4, 20, 1, 1, 2, 50, 1, 1}; // 100
+        int[] source3 = new int[]{4, 5, 200, 10, 50}; // 200
+        int res1 = fetchGMultipleByMulti(source1);
+        int res2 = fetchGMultipleByMulti(source2);
+        int res3 = fetchGMultipleByMulti(source3);
         System.out.println("source1");
         printArray(source1);
         System.out.println();
-        System.out.println("res1");
-        printArray(res1);
-        System.out.println();
+        System.out.println("res1: " + res1);
 
         System.out.println("source2");
         printArray(source2);
         System.out.println();
-        System.out.println("res2");
-        printArray(res2);
-        System.out.println();
+        System.out.println("res2: " + res2);
 
         System.out.println("source3");
         printArray(source3);
         System.out.println();
-        System.out.println("res3");
-        printArray(res3);
-        System.out.println();
+        System.out.println("res3: " + res3);
     }
 
     private static void printArray(int[] arr) {
