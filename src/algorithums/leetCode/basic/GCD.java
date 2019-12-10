@@ -62,7 +62,7 @@ public class GCD {
                 if (i + (int) Math.pow(2, count) < copy.length){
                     copy[i] = multiple(copy[i], copy[i + (int) Math.pow(2, count)]);
                 }
-                i = i + (int)Math.pow(2, count) + 1;
+                i += 2*(count + 1);
             }
             count++;
         }
@@ -140,9 +140,11 @@ public class GCD {
         int[] source1 = new int[]{1, 3, 5, 10, 2}; // 30
         int[] source2 = new int[]{4, 20, 1, 1, 2, 50, 1, 1}; // 100
         int[] source3 = new int[]{4, 5, 200, 10, 50}; // 200
+        int[] source4 = new int[]{4, 1, 1, 1, 1, 1, 1, 10}; // 20
         int res1 = fetchGMultipleByMulti(source1);
         int res2 = fetchGMultipleByMulti(source2);
         int res3 = fetchGMultipleByMulti(source3);
+        int res4 = fetchGMultipleByMulti(source4);
         System.out.println("source1");
         printArray(source1);
         System.out.println();
@@ -157,6 +159,11 @@ public class GCD {
         printArray(source3);
         System.out.println();
         System.out.println("res3: " + res3);
+
+        System.out.println("source4");
+        printArray(source4);
+        System.out.println();
+        System.out.println("res4: " + res4);
     }
 
     private static void printArray(int[] arr) {
