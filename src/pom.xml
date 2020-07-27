@@ -11,6 +11,7 @@
 
     <properties>
         <spring.version>5.2.2.RELEASE</spring.version>
+        <easyexcel.version>2.1.6</easyexcel.version>
     </properties>
 
 
@@ -22,6 +23,11 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webflux</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel</artifactId>
+            <version>${easyexcel.version}</version>
         </dependency>
     </dependencies>
 
